@@ -1,8 +1,8 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://10.0.8.3:3306/generator?characterEncoding=utf-8&serverTimezone=GMT%2B8
-    username: root
+    url: jdbc:mysql://192.168.1.254:3306/generator?allowPublicKeyRetrieval=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: generator
     password: jh@123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat,wall
@@ -20,7 +20,9 @@ spring:
     web-stat-filter:
       enabled: true
       url-pattern: "/*"
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
 mybatis:
   configuration:
@@ -50,6 +52,16 @@ management:
   endpoint:
     info:
       enabled: true
+
+knife4j:
+  enable: true
+  #生产上需设置该值为true,即屏蔽swagger的doc文档访问
+  production: false
+  basic:
+    #是否开启密码
+    enable: false
+    username: chenjh
+    password: 123456
 
 logging:
   level:

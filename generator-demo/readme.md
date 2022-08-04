@@ -2,6 +2,7 @@
 
 ## Quick Start
 http://localhost:8080/index.html  
+http://localhost:8080/doc.html
 
 
 ## 功能特性

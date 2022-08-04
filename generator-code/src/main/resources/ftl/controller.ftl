@@ -1,5 +1,9 @@
 package ${module}.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import javax.servlet.http.HttpServletRequest;
 
 import org.ccs.opendfl.base.BaseController;
@@ -29,6 +33,7 @@ import ${module}.po.${entityName}Po;
  * @Company: ${company}
  * @Copyright: ${copyright}
 */
+@Api(tags = "${comment}接口")
 @RestController
 @RequestMapping("${simpleModule}/${entityName?uncap_first}")
 public class ${entityName}Controller extends BaseController {
@@ -52,6 +57,7 @@ public class ${entityName}Controller extends BaseController {
 	 * @param pageInfo
 	 * @return java.lang.Object
 	*/
+	@ApiOperation(value = "${comment}列表", notes = "${comment}列表翻页查询")
 	@RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
 	public MyPageInfo<${entityName}Po> queryPage(HttpServletRequest request, ${entityName}Po entity, MyPageInfo<${entityName}Po> pageInfo){
 		if(entity == null) {
@@ -64,6 +70,7 @@ public class ${entityName}Controller extends BaseController {
 		return pageInfo;
 	}
 
+	@ApiOperation(value = "${comment}列表(easyui)", notes = "${comment}列表翻页查询，用于兼容easyui的rows方式")
 	@RequestMapping(value = "/list2", method = {RequestMethod.POST, RequestMethod.GET})
 	public PageVO<${entityName}Po> findByPage(HttpServletRequest request, ${entityName}Po entity, MyPageInfo<${entityName}Po> pageInfo) {
 		logger.debug("-------findByPage-------");
@@ -80,6 +87,7 @@ public class ${entityName}Controller extends BaseController {
 	 * @param entity
 	 * @return ResultData
 	*/
+	@ApiOperation(value = "添加${comment}", notes = "添加一个${comment}")
 	@RequestMapping(value = "save", method = {RequestMethod.POST, RequestMethod.GET})
 	public ResultData edit(${entityName}Po entity, HttpServletRequest request){
 		if (entity.getId() != null && entity.getId() > 0) {
@@ -99,6 +107,7 @@ public class ${entityName}Controller extends BaseController {
 	 * @param entity
 	 * @return ResultData
 	*/
+	@ApiOperation(value = "修改${comment}", notes = "根据传入的角色信息修改")
 	@RequestMapping(value = "update", method = {RequestMethod.POST, RequestMethod.GET})
 	public ResultData update(${entityName}Po entity, HttpServletRequest request){
 		entity.set${modifyUserField?cap_first}(getCurrentUserId());
@@ -114,6 +123,7 @@ public class ${entityName}Controller extends BaseController {
 	 * @param ${entityName?uncap_first}
 	 * @return ResultData
 	*/
+	@ApiOperation(value = "删除${comment} ", notes = "根据传入id进行删除状态修改(即软删除)")
 	@RequestMapping(value = "delete", method = {RequestMethod.POST, RequestMethod.GET})
 	public ResultData delete(${entityName}Po ${entityName?uncap_first}, HttpServletRequest request){
 		String id = request.getParameter("id");
