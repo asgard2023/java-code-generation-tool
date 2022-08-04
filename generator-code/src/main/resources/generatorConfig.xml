@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-autowire="byName" default-lazy-init="false">
+    <bean id="dataSource" class="org.ccs.generator.util.DataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://10.0.8.3:3306/generator?characterEncoding=utf-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="jh@123456"/>
+    </bean>
+    <bean id="mySqlHelper" class="org.ccs.generator.util.MySqlHelper">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 重复生成会删除旧的代码再生成新的 -->
+    <bean id="config" class="org.ccs.generator.bean.Config">
+        <!-- 表名  -->
+        <property name="tableName" value="dfl_user"/>
+        <!-- 实体名称  -->
+        <property name="entityName" value="DflUser"/>
+        <!-- 模块名称，代码安放的目录 -->
+        <property name="modelName" value="dflsystem"/>
+        <!-- 全包名 -->
+        <property name="pkg" value="org.ccs.opendfl.mysql.dflsystem"/>
+        <!-- 代码作者 -->
+        <property name="author" value="Generator"/>
+        <!-- 精确匹配查询，多个以","隔开 -->
+        <property name="equalsSearchColumns" value="telephone,username,email"/>
+        <!-- 模糊查询条件，多个以","隔开 -->
+        <!-- 		<property name="likeSearchColumns" value="title,description"/> -->
+        <!-- 定义哪些属性在jsp grid中显示或不显示，多个以","隔开，属性前添加"!"相反 -->
+        <property name="hideGridColumns" value="id,ifDel,pwd"/>
+        <!-- 编辑时绑定下拉数据 -->
+        <property name="dictColumns" value="status:dict_status"/>
+        <!-- 编辑时绑定下拉数据，包含all选项 -->
+        <!--        <property name="dictAllColumns" value="status:dict_tf_status"/>-->
+        <!-- 外键关联，查询关联的名称 -->
+        <!-- 		<property name="fkColumns" value="systemInfoId:systemInfo,intfInfoId:intfInfo"/> -->
+        <!-- 全包名 -->
+        <property name="company" value="opendfl"/>
+        <!-- 全包名 -->
+        <property name="copyright" value="2022 opendfl Inc. All rights reserved."/>
+    </bean>
+</beans>

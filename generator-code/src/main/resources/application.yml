@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: generator for jqgrid/easyui
+  profiles:
+    active: dev
+#  mvc:
+#    static-path-pattern: /static/**
