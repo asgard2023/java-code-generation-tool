@@ -6,6 +6,10 @@
 * 支持基于uri的限制，配置允许动态修改
 * 通过jdbc支持多种数据库:mysql,postgreSql,oracle等
 
+## 近期目标
+* 支持更多的前端UI，比如extjs,layui
+* 文档增强，支持swagger
+
 ## 原理及特性
 * 基于数据库表，读取表的所有属性，备注等，用于生成代码。
 * java代码与页面easyui或jqgrid代码一次生成，根据需要选择对应的页面。
