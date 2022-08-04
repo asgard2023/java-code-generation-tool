@@ -79,7 +79,7 @@ public class DflRoleController extends BaseController {
     }
 
     @ApiOperation(value = "角色列表查询", notes = "用于页面的角色下拉列表功能，只显示第一页，最多显示100条，支持条件筛选(code或name)以方便联想输入")
-    @RequestMapping(value = {"name/list"})
+    @RequestMapping(value = {"name/list"}, method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseStatus(value = HttpStatus.OK)
     public List<DflRolePo> findNameByPage(HttpServletRequest request, DflRolePo user) {
         logger.info("-------findNameByPage-------");
