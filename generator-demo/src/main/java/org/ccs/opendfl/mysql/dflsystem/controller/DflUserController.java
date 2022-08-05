@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Version V1.0
  * @Title: DflUsercontroller
- * @Package: org.ccs.opendfl.mysql.dflsystem.controller
+ * @Package: org.ccs.opendfl.mysql.dflsystem.controller 包名
  * @Description: dfl_user Controller
  * @Author: Created by Generator
- * @Date: 2022-8-5 6:52:11
+ * @Date: 2022-8-6 6:46:20
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
  */
@@ -38,20 +38,15 @@ public class DflUserController extends BaseController {
     @Autowired
     private IDflUserBiz dflUserBiz;
 
-    @RequestMapping(value = {"index"}, method = RequestMethod.GET)
-    public String index() {
-        return "dflsystem/dflUser";
-    }
-
     /**
      * dfl_user列表查询
      *
-     * @param request
-     * @param entity
-     * @param pageInfo
-     * @return java.lang.Object
+     * @param request  请求req
+     * @param entity   dfl_user对象
+     * @param pageInfo 翻页对象
+     * @return MyPageInfo 带翻页的数据集
      * @author Generator
-     * @date 2022-8-5 6:52:11
+     * @date 2022-8-6 6:46:20
      */
     @ApiOperation(value = "dfl_user列表", notes = "dfl_user列表翻页查询")
     @RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
@@ -78,11 +73,11 @@ public class DflUserController extends BaseController {
     /**
      * dfl_user 新增
      *
-     * @param request
-     * @param entity
-     * @return ResultData
+     * @param request 请求req
+     * @param entity  dfl_user对象
+     * @return ResultData 返回数据
      * @author Generator
-     * @date 2022-8-5 6:52:11
+     * @date 2022-8-6 6:46:20
      */
     @ApiOperation(value = "添加dfl_user", notes = "添加一个dfl_user")
     @RequestMapping(value = "save", method = {RequestMethod.POST, RequestMethod.GET})
@@ -99,11 +94,11 @@ public class DflUserController extends BaseController {
     /**
      * dfl_user 更新
      *
-     * @param request
-     * @param entity
-     * @return ResultData
+     * @param request 请求req
+     * @param entity  dfl_user对象
+     * @return ResultData 返回数据
      * @author Generator
-     * @date 2022-8-5 6:52:11
+     * @date 2022-8-6 6:46:20
      */
     @ApiOperation(value = "修改dfl_user", notes = "根据传入的角色信息修改")
     @RequestMapping(value = "update", method = {RequestMethod.POST, RequestMethod.GET})
@@ -116,19 +111,18 @@ public class DflUserController extends BaseController {
     /**
      * dfl_user 删除
      *
-     * @param request
-     * @param dflUser
-     * @return ResultData
+     * @param request 请求req
+     * @param entity  dfl_user对象
+     * @return ResultData 返回数据
      * @author Generator
-     * @date 2022-8-5 6:52:11
+     * @date 2022-8-6 6:46:20
      */
     @ApiOperation(value = "删除dfl_user ", notes = "根据传入id进行删除状态修改(即软删除)")
     @RequestMapping(value = "delete", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResultData delete(DflUserPo dflUser, HttpServletRequest request) {
-        String id = request.getParameter("id");
-        ValidateUtils.notNull(id, "id不能为空");
+    public ResultData delete(DflUserPo entity, HttpServletRequest request) {
+        ValidateUtils.notNull(entity.getId(), "id不能为空");
         String remark = request.getParameter("remark");
-        int v = dflUserBiz.deleteDflUser(Integer.parseInt(id), this.getCurrentUserId(), remark);
+        int v = dflUserBiz.deleteDflUser(entity.getId(), this.getCurrentUserId(), remark);
         return ResultData.success(v);
     }
 }

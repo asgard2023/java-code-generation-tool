@@ -1,49 +1,51 @@
 package org.ccs.opendfl.mysql.dflsystem.biz;
 
+import org.ccs.opendfl.base.IBaseService;
 import org.ccs.opendfl.mysql.dflsystem.po.DflUserPo;
 
-import org.ccs.opendfl.base.IBaseService;
-
 /**
- *
- *
  * @Version V1.0
  * @Title: IDflUserBiz
- * @Description:  业务接口
+ * @Description: dfl_user 业务接口
  * @Author: Created by Generator
- * @Date: 2022-8-1 7:02:19
+ * @Date: 2022-8-6 6:06:51
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
-
-*/
+ */
 public interface IDflUserBiz extends IBaseService<DflUserPo> {
+    public DflUserPo getDataById(Integer id);
+
+    public DflUserPo getDataById(Integer id, String ignoreFields);
 
     /**
-     *  保存
-     * @author Generator
-     * @date 2022-8-1 7:02:19
+     * dfl_user 保存
+     *
      * @param entity
      * @return Integer
-    */
+     * @author Generator
+     * @date 2022-8-6 6:06:51
+     */
     Integer saveDflUser(DflUserPo entity);
 
     /**
-     *  更新
-     * @author Generator
-     * @date 2022-8-1 7:02:19
+     * dfl_user 更新
+     *
      * @param entity
      * @return Integer
-    */
+     * @author Generator
+     * @date 2022-8-6 6:06:51
+     */
     Integer updateDflUser(DflUserPo entity);
 
     /**
-     *  删除
-     * @author Generator
-     * @date 2022-8-1 7:02:19
-     * @param id 主键ID
+     * dfl_user 删除
+     *
+     * @param id       主键ID
      * @param operUser 操作人
-     * @param remark 备注
+     * @param remark   备注
      * @return Integer
-    */
+     * @author Generator
+     * @date 2022-8-6 6:06:51
+     */
     Integer deleteDflUser(Integer id, Integer operUser, String remark);
 }

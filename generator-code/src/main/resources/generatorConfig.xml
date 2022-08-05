@@ -24,6 +24,7 @@
         <property name="pkg" value="org.ccs.opendfl.mysql.dflsystem"/>
         <!-- 代码作者 -->
         <property name="author" value="Generator"/>
+        <property name="swagger" value="true"/>
         <!-- 精确匹配查询，多个以","隔开 -->
         <property name="equalsSearchColumns" value="telephone,username,email"/>
         <!-- 模糊查询条件，多个以","隔开 -->

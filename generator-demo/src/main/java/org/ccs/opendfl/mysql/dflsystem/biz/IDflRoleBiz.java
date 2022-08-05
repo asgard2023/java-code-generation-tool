@@ -17,6 +17,10 @@ import java.util.Map;
 public interface IDflRoleBiz extends IBaseService<DflRolePo> {
     public Map<Integer, DflRolePo> getRoleMapByIds(List<Integer> roleIds);
 
+    public DflRolePo getDataById(Integer id);
+
+    public DflRolePo getDataById(Integer id, String ignoreFields);
+
     /**
      * 角色表 保存
      *

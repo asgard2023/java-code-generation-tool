@@ -40,6 +40,10 @@ public class Table {
 
     private String company = "test";
     private String copyright = "test";
+    /**
+     * 是否支持生成swagger文档
+     */
+    private boolean swagger;
 
     /**
      * id类型，String,Integer,Long

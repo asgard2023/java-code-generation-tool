@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import org.ccs.opendfl.base.BaseService;
+import org.ccs.opendfl.base.BeanUtils;
 import org.ccs.opendfl.base.ISelfInject;
 import org.ccs.opendfl.base.MyPageInfo;
 
@@ -43,6 +44,30 @@ public class ${entityName}Biz extends BaseService<${entityName}Po> implements I$
 	@Override
 	public Mapper<${entityName}Po> getMapper() {
 		return mapper;
+	}
+
+	public ${entityName}Po getDataById(${idJavaType} id) {
+		return getDataById(id, null);
+	}
+	/**
+		* 按ID查数据
+		*
+		* @param id           数据id
+		* @param ignoreFields 支持忽略属性，例如：ignoreFields=ifDel,createTime,createUser将不返回这些属性
+		* @return 数据
+	*/
+	public ${entityName}Po getDataById(${idJavaType} id, String ignoreFields) {
+		if (id == null || id == 0) {
+			return null;
+		}
+		Example example = new Example(${entityName}Po.class);
+		if(StringUtils.isNotBlank(ignoreFields))
+			String props = BeanUtils.getAllProperties(${entityName}Po.class, ignoreFields);
+			example.selectProperties(props.split(","));
+		}
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andEqualTo("id", id);
+		return this.mapper.selectOneByExample(example);
 	}
 
 	@Override
@@ -112,13 +137,7 @@ public class ${entityName}Biz extends BaseService<${entityName}Po> implements I$
 	}
 
 	@Override
-	<#if idJavaType=='Integer'>
-	public	Integer delete${entityName}(Integer id, Integer operUser, String remark){
-	<#elseif idJavaType=='Long'>
-	public	Integer delete${entityName}(Long id, Integer operUser, String remark){
-	<#else>
-	public	Integer delete${entityName}(String id, Integer operUser, String remark){
-	</#if>
+	public	Integer delete${entityName}(${idJavaType} id, Integer operUser, String remark){
 		${entityName}Po po = new ${entityName}Po();
 		po.setId(id);
 		po.setIfDel(1); // 0未删除,1已删除

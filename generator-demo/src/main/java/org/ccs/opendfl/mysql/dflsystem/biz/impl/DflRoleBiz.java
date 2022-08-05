@@ -1,8 +1,9 @@
 package org.ccs.opendfl.mysql.dflsystem.biz.impl;
 
-import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.page.PageMethod;
+import org.apache.commons.lang3.StringUtils;
 import org.ccs.opendfl.base.BaseService;
-import org.ccs.opendfl.base.ISelfInject;
+import org.ccs.opendfl.base.BeanUtils;
 import org.ccs.opendfl.base.MyPageInfo;
 import org.ccs.opendfl.mysql.dflsystem.biz.IDflRoleBiz;
 import org.ccs.opendfl.mysql.dflsystem.mapper.DflRoleMapper;
@@ -26,7 +27,7 @@ import java.util.*;
  * @Date: 2022-5-3 20:25:42
  */
 @Service(value = "dflRoleBiz")
-public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz, ISelfInject {
+public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz {
     @Autowired
     private DflRoleMapper mapper;
 
@@ -37,11 +38,30 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz, I
         return mapper;
     }
 
-    private IDflRoleBiz _self;
 
-    @Override
-    public void setSelf(Object o) {
-        this._self = (IDflRoleBiz) o;
+    public DflRolePo getDataById(Integer id) {
+        return getDataById(id, null);
+    }
+
+    /**
+     * 按ID查数据
+     *
+     * @param id           数据id
+     * @param ignoreFields 支持忽略属性，例如：ignoreFields=ifDel,createTime,createUser将不返回这些属性
+     * @return 数据
+     */
+    public DflRolePo getDataById(Integer id, String ignoreFields) {
+        if (id == null) {
+            return null;
+        }
+        Example example = new Example(DflRolePo.class);
+        if (StringUtils.isNotBlank(ignoreFields)) {
+            String props = BeanUtils.getAllProperties(DflRolePo.class, ignoreFields);
+            example.selectProperties(props.split(","));
+        }
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("id", id);
+        return this.mapper.selectOneByExample(example);
     }
 
     @Override
@@ -79,15 +99,15 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz, I
         if (StringUtil.isNotEmpty(pageInfo.getOrderBy()) && StringUtil.isNotEmpty(pageInfo.getOrder())) {
             example.setOrderByClause(StringUtil.camelhumpToUnderline(pageInfo.getOrderBy()) + " " + pageInfo.getOrder());
         }
-        PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+        PageMethod.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
         List<DflRolePo> list = this.getMapper().selectByExample(example);
         return new MyPageInfo<>(list);
     }
 
     @Override
     public Map<Integer, DflRolePo> getRoleMapByIds(List<Integer> roleIds) {
-        if(CollectionUtils.isEmpty(roleIds)){
-            return Collections.EMPTY_MAP;
+        if (CollectionUtils.isEmpty(roleIds)) {
+            return Collections.emptyMap();
         }
         Example example = new Example(DflRolePo.class);
         Example.Criteria criteria = example.createCriteria();
@@ -102,7 +122,7 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz, I
 
     @Override
     public Integer saveDflRole(DflRolePo entity) {
-        if(entity.getStatus()==null){
+        if (entity.getStatus() == null) {
             entity.setStatus(1);
         }
         if (entity.getCreateTime() == null) {
@@ -126,7 +146,7 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz, I
     @Override
     public Integer deleteDflRole(Integer id, Integer operUser, String remark) {
         DflRolePo po = new DflRolePo();
-//		po.setId(id);
+		po.setId(id);
         po.setIfDel(1); // 0未删除,1已删除
         po.setModifyUser(operUser);
         po.setRemark(remark);

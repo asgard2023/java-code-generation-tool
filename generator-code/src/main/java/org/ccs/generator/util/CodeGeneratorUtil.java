@@ -42,6 +42,7 @@ public class CodeGeneratorUtil {
         t.setCompany(config.getCompany());
         t.setCopyright(config.getCopyright());
         t.setHideGridColumns(config.getHideGridColumns());
+        t.setSwagger(config.isSwagger());
 
         try {
             //外键关联

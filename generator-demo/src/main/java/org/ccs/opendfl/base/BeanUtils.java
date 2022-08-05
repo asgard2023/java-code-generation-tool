@@ -1,8 +1,8 @@
 package org.ccs.opendfl.base;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.MapperException;
 import tk.mybatis.mapper.entity.EntityColumn;
 import tk.mybatis.mapper.mapperhelper.EntityHelper;
@@ -53,7 +53,7 @@ public class BeanUtils {
     /**
      * 通过反射设置实体的某属性值
      *
-     * @param clazz
+     * @param entity
      * @param propertyName
      * @param value
      */
@@ -67,7 +67,7 @@ public class BeanUtils {
             method = entity.getClass().getDeclaredMethod(methodName, value.getClass());
             method.invoke(entity, value);
         } catch (Exception e) {
-           log.error("----{} setValue--propertyName={}", e.getClass().getSimpleName(), propertyName, e);
+            log.error("----{} setValue--propertyName={}", e.getClass().getSimpleName(), propertyName, e);
         }
 
     }
@@ -84,7 +84,7 @@ public class BeanUtils {
         try {
             method = entity.getClass().getDeclaredMethod(methodName, params.getClass());
             return method.invoke(entity, params);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             log.error("----{} executeMethod--propertyName={}", e.getClass().getSimpleName(), methodName, e);
         }
         return null;
@@ -109,9 +109,8 @@ public class BeanUtils {
     /**
      * 通过反射获取实体某属性值
      *
-     * @param clazz
+     * @param entity
      * @param propertyName
-     * @param value
      */
     public static Object getValue(Object entity, String propertyName) {
         Method method = null;
@@ -119,7 +118,7 @@ public class BeanUtils {
             String methodName = "get" + upperCaseFirst(propertyName);
             method = entity.getClass().getDeclaredMethod(methodName);
             return method.invoke(entity);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             log.error("----{} getValue--propertyName={}", e.getClass().getSimpleName(), propertyName, e);
         }
         return null;
@@ -235,5 +234,37 @@ public class BeanUtils {
             }
         }
         return null;
+    }
+
+    public static String getAllProperties(Class<?> entityClass, String ignoreProperties) {
+        Set<EntityColumn> columnList = EntityHelper.getColumns(entityClass);
+        StringBuilder sql = new StringBuilder();
+        String[] ignores = new String[0];
+        if (ignoreProperties != null) {
+            if (ignoreProperties.contains(",")) {
+                ignores = ignoreProperties.split(",");
+            } else {
+                ignores = new String[]{ignoreProperties};
+            }
+        }
+        boolean isIgnore = false;
+        for (EntityColumn entityColumn : columnList) {
+            isIgnore = false;
+            for (String ignore : ignores) {
+                if (entityColumn.getProperty().equals(ignore)) {
+                    isIgnore = true;
+                    break;
+                }
+            }
+            if (isIgnore) {
+                continue;
+            }
+            sql.append(entityColumn.getProperty()).append(",");
+        }
+        String rSql = sql.toString();
+        if (rSql.endsWith(",")) {
+            rSql = rSql.substring(0, rSql.length() - 1);
+        }
+        return rSql;
     }
 }

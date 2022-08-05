@@ -1,9 +1,11 @@
 package ${module}.controller;
 
+<#if swagger >
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+</#if>
 import javax.servlet.http.HttpServletRequest;
 
 import org.ccs.opendfl.base.BaseController;
@@ -26,14 +28,16 @@ import ${module}.po.${entityName}Po;
 /**
  * @Version V1.0
  * @Title: ${entityName}controller
- * @Package: ${module}.controller
+ * @Package: ${module}.controller 包名
  * @Description: ${comment} Controller
  * @Author: Created by ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}
 */
+<#if swagger >
 @Api(tags = "${comment}接口")
+</#if>
 @RestController
 @RequestMapping("${simpleModule}/${entityName?uncap_first}")
 public class ${entityName}Controller extends BaseController {
@@ -43,21 +47,18 @@ public class ${entityName}Controller extends BaseController {
 	@Autowired
 	private I${entityName}Biz ${entityName?uncap_first}Biz;
 
-	@RequestMapping(value = {"index"}, method = RequestMethod.GET)
-	public String index() {
-		return "${simpleModule}/${entityName?uncap_first}";
-	}
-
 	/**
 	 * ${comment}列表查询
+	 * @param request 请求req
+	 * @param entity ${comment}对象
+	 * @param pageInfo 翻页对象
+	 * @return MyPageInfo 带翻页的数据集
 	 * @author ${author}
 	 * @date ${.now}
-	 * @param request
-	 * @param entity
-	 * @param pageInfo
-	 * @return java.lang.Object
 	*/
+<#if swagger >
 	@ApiOperation(value = "${comment}列表", notes = "${comment}列表翻页查询")
+</#if>
 	@RequestMapping(value = "list", method = {RequestMethod.POST, RequestMethod.GET})
 	public MyPageInfo<${entityName}Po> queryPage(HttpServletRequest request, ${entityName}Po entity, MyPageInfo<${entityName}Po> pageInfo){
 		if(entity == null) {
@@ -69,8 +70,9 @@ public class ${entityName}Controller extends BaseController {
 		pageInfo = ${entityName?uncap_first}Biz.findPageBy(entity, pageInfo, this.createAllParams(request));
 		return pageInfo;
 	}
-
+<#if swagger >
 	@ApiOperation(value = "${comment}列表(easyui)", notes = "${comment}列表翻页查询，用于兼容easyui的rows方式")
+</#if>
 	@RequestMapping(value = "/list2", method = {RequestMethod.POST, RequestMethod.GET})
 	public PageVO<${entityName}Po> findByPage(HttpServletRequest request, ${entityName}Po entity, MyPageInfo<${entityName}Po> pageInfo) {
 		logger.debug("-------findByPage-------");
@@ -81,13 +83,15 @@ public class ${entityName}Controller extends BaseController {
 
 	/**
 	 * ${comment} 新增
+	 * @param request 请求req
+	 * @param entity ${comment}对象
+	 * @return ResultData 返回数据
 	 * @author ${author}
 	 * @date ${.now}
-	 * @param request
-	 * @param entity
-	 * @return ResultData
 	*/
+<#if swagger >
 	@ApiOperation(value = "添加${comment}", notes = "添加一个${comment}")
+</#if>
 	@RequestMapping(value = "save", method = {RequestMethod.POST, RequestMethod.GET})
 	public ResultData edit(${entityName}Po entity, HttpServletRequest request){
 		if (entity.getId() != null && entity.getId() > 0) {
@@ -101,13 +105,15 @@ public class ${entityName}Controller extends BaseController {
 
 	/**
 	 * ${comment} 更新
+	 * @param request 请求req
+	 * @param entity ${comment}对象
+	 * @return ResultData 返回数据
 	 * @author ${author}
 	 * @date ${.now}
-	 * @param request
-	 * @param entity
-	 * @return ResultData
 	*/
+<#if swagger >
 	@ApiOperation(value = "修改${comment}", notes = "根据传入的角色信息修改")
+</#if>
 	@RequestMapping(value = "update", method = {RequestMethod.POST, RequestMethod.GET})
 	public ResultData update(${entityName}Po entity, HttpServletRequest request){
 		entity.set${modifyUserField?cap_first}(getCurrentUserId());
@@ -117,25 +123,20 @@ public class ${entityName}Controller extends BaseController {
 
 	/**
 	 * ${comment} 删除
+	 * @param request 请求req
+	 * @param entity ${comment}对象
+	 * @return ResultData 返回数据
 	 * @author ${author}
 	 * @date ${.now}
-	 * @param request
-	 * @param ${entityName?uncap_first}
-	 * @return ResultData
 	*/
+<#if swagger >
 	@ApiOperation(value = "删除${comment} ", notes = "根据传入id进行删除状态修改(即软删除)")
+</#if>
 	@RequestMapping(value = "delete", method = {RequestMethod.POST, RequestMethod.GET})
-	public ResultData delete(${entityName}Po ${entityName?uncap_first}, HttpServletRequest request){
-		String id = request.getParameter("id");
-		ValidateUtils.notNull(id,"id不能为空");
+	public ResultData delete(${entityName}Po entity, HttpServletRequest request){
+		ValidateUtils.notNull(entity.getId(),"id不能为空");
 		String remark = request.getParameter("remark");
-			<#if idJavaType=='Integer'>
-		int v=${entityName?uncap_first}Biz.delete${entityName}(Integer.parseInt(id), this.getCurrentUserId(), remark);
-			<#elseif idJavaType=='Long'>
-		int v=${entityName?uncap_first}Biz.delete${entityName}(Long.parseLong(id), this.getCurrentUserId(), remark);
-			<#else>
-		int v=${entityName?uncap_first}Biz.delete${entityName}(id, this.getCurrentUserId(), remark);
-			</#if>
+		int v=${entityName?uncap_first}Biz.delete${entityName}(entity.getId(), this.getCurrentUserId(), remark);
 		return ResultData.success(v);
 	}
 }

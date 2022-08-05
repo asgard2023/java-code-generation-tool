@@ -40,11 +40,6 @@ public class DflRoleController extends BaseController {
     @Autowired
     private IDflRoleBiz dflRoleBiz;
 
-    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public String index() {
-        return "dflSystem/dflRole";
-    }
-
     /**
      * 角色表列表查询
      *
