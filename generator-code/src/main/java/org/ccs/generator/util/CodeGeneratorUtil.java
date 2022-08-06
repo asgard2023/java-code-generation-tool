@@ -1,5 +1,6 @@
 package org.ccs.generator.util;
 
+import cn.hutool.core.io.FileUtil;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.Version;
@@ -108,23 +109,22 @@ public class CodeGeneratorUtil {
         Configuration cfg = new Configuration(new Version(VERSION));
         cfg.setClassForTemplateLoading(DbFieldTypeUtil.class, DbFieldTypeUtil.ROOT);
         cfg.setDefaultEncoding("UTF-8");
-        try {
-            File target = new File(outputName);
-            if (target.exists())
-                target.deleteOnExit();
-            File dir = new File(target.getParent());
-            if (!dir.exists())
-                dir.mkdirs();
 
-            try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(target, true));
-                 PrintWriter writer = new PrintWriter(bos, true);) {
-                Template template = cfg.getTemplate(ftl);
-                template.process(model, writer);
-            } catch (Exception ee) {
-                log.error("---genereateCode--ftl={}", ftl, ee);
-            }
-        } catch (Exception e) {
-            log.error("---genereateCode--ftl={}", ftl, e);
+        File target = new File(outputName);
+        FileUtil.del(outputName);
+        File dir = new File(target.getParent());
+        if (!dir.exists())
+            dir.mkdirs();
+
+        try (FileOutputStream fos = new FileOutputStream(target, true);
+             BufferedOutputStream bos = new BufferedOutputStream(fos);
+             PrintWriter writer = new PrintWriter(bos, true);
+        ) {
+            Template template = cfg.getTemplate(ftl);
+            template.process(model, writer);
+        } catch (Exception ee) {
+            log.error("---genereateCode--ftl={}", ftl, ee);
         }
+
     }
 }

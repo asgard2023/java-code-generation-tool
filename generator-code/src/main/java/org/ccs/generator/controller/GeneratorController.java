@@ -3,6 +3,7 @@ package org.ccs.generator.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.ccs.generator.bean.Config;
@@ -48,6 +49,11 @@ public class GeneratorController {
         String ip = ServletUtil.getClientIP(request);
         Long existTime = requestLockMap.get(ip);
         String type = request.getParameter("type");
+        String swagger = request.getParameter("swagger");
+        config.setSwagger(false);
+        if (StrUtil.equals("on", swagger)) {
+            config.setSwagger(true);
+        }
         if (existTime == null || curTime - existTime > 5 * 60000) {
             requestLockMap.put(ip, curTime);
             String path = null;
@@ -85,9 +91,10 @@ public class GeneratorController {
                     CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
             BeanUtil.copyProperties(config, tmp,
                     CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
+            tmp.setSwagger(config.isSwagger());
             config = tmp;
         }
-        log.info("---ip={} type={} tableName={} author={}", ip, type, config.getTableName(), config.getAuthor());
+        log.info("---ip={} type={} tableName={} author={} swagger={}", ip, type, config.getTableName(), config.getAuthor(), config.isSwagger());
         String path = CodeGeneratorUtil.generateCode(config);
         log.info("----ip={} generate code ok", ip);
         FileZipUtils.createZipFile(path);

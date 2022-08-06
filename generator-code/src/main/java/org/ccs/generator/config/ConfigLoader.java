@@ -1,18 +1,24 @@
 package org.ccs.generator.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
 
+@Slf4j
 public class ConfigLoader {
-    static ClassPathResource resource = new ClassPathResource("generatorConfig.xml");
+    private ConfigLoader(){
+
+    }
+    public static final String CONFIG_FILE_NAME = "generatorConfig.xml";
+    static ClassPathResource resource = new ClassPathResource(CONFIG_FILE_NAME);
     static DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
     static XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
 
     static {
-        reader.loadBeanDefinitions(resource);
+        reader.loadBeanDefinitions(CONFIG_FILE_NAME);
     }
 
     public static Object getBean(String beanId) {
@@ -25,8 +31,8 @@ public class ConfigLoader {
             path = path.substring(0, path.indexOf("target") + "target".length());
             return path;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.warn("-----getClassPath--fail={}", e.getMessage());
         }
-        return null;
+        return "/tmp/";
     }
 }
