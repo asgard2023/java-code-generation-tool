@@ -61,7 +61,7 @@ public class ${entityName}Biz extends BaseService<${entityName}Po> implements I$
 			return null;
 		}
 		Example example = new Example(${entityName}Po.class);
-		if(StringUtils.isNotBlank(ignoreFields))
+		if(StringUtils.isNotBlank(ignoreFields)){
 			String props = BeanUtils.getAllProperties(${entityName}Po.class, ignoreFields);
 			example.selectProperties(props.split(","));
 		}
