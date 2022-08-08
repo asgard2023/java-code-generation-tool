@@ -1,8 +1,10 @@
 # java代码生成工具
 * 一款spring代码生成工具，可自定义模板生成不同的代码，支持MySQL、Oracle、SQL Server、PostgreSQL。
 * 生成mybatis mapper,po,biz,controller全套后台代码
-* 生成easyui代码
-* 生成jqgrid代码
+* 支持生成easyui代码
+* 支持生成jqgrid代码
+* 支持生成layui代码
+* 支持生成swagger文档代码
 * 支持基于uri的限制，配置允许动态修改
 * 通过jdbc支持多种数据库:mysql,postgreSql,oracle等
 
@@ -15,9 +17,6 @@
 * 支持基本功能：查询、增加、修改、删除。
 * 演示示例：http://175.178.252.112:8091/index.html
 
-## 近期目标
-* 支持更多的前端UI，比如extjs,layui
-* 文档增强，支持swagger
 
 ## 原理及特性
 * 基于数据库表，读取表的所有属性，备注等，用于生成代码。
