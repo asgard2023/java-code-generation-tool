@@ -475,5 +475,5 @@ function initStartEndTime(beforeDay) {
     laydate(end);
     //给input赋值
     $('#startTime').val(laydate.now(-beforeDay, 'YYYY-MM-DD hh:mm:ss'));
-    $('#endTime').val(laydate.now(0, 'YYYY-MM-DD hh:mm:ss'));
+    //$('#endTime').val(laydate.now(0, 'YYYY-MM-DD hh:mm:ss'));
 }

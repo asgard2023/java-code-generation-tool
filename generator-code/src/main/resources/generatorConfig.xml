@@ -15,9 +15,9 @@
     <!-- 重复生成会删除旧的代码再生成新的 -->
     <bean id="config" class="org.ccs.generator.bean.Config">
         <!-- 表名  -->
-        <property name="tableName" value="dfl_user"/>
+        <property name="tableName" value="dfl_resource"/>
         <!-- 实体名称  -->
-        <property name="entityName" value="DflUser"/>
+        <property name="entityName" value="DflResource"/>
         <!-- 模块名称，代码安放的目录 -->
         <property name="modelName" value="dflsystem"/>
         <!-- 全包名 -->

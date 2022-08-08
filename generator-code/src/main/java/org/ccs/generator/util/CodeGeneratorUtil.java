@@ -94,6 +94,10 @@ public class CodeGeneratorUtil {
         //jqgrid
         genereateCode("jqgrid/jqgrid_html.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
         genereateCode("jqgrid/jqgrid_js.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".js");
+        //layui
+        genereateCode("layui/layui_html.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
+        genereateCode("layui/layui_edit.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + "Edit.html");
+
         return curPath;
 
     }
