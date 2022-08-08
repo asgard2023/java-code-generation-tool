@@ -3,6 +3,7 @@
 * 生成mybatis mapper,po,biz,controller全套后台代码
 * 生成easyui代码
 * 生成jqgrid代码
+* 生成layui代码
 * 支持基于uri的限制，配置允许动态修改
 * 通过jdbc支持多种数据库:mysql,postgreSql,oracle等
 
