@@ -15,7 +15,7 @@
 * easyui/jqgrid
 * po,mapper(dao),biz,controller及页面全部生成
 * 支持基本功能：查询、增加、修改、删除。
-* 演示示例：http://175.178.252.112:8091/index.html
+* 演示示例：http://generate.opendfl.org.cn/index.html
 
 
 ## 原理及特性

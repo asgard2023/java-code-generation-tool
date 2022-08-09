@@ -17,3 +17,6 @@
 * 配置generatorConfig.xml
 * 运行单元测试CodeGeneratorUtilTest.generateCode
 * web生成：http://localhost:8080/index.html
+
+## 演示示例
+http://generate-demo.opendfl.org.cn/index.html
