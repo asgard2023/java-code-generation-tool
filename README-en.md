@@ -1,17 +1,30 @@
-# code-gen-spring 代码生成工具
-* 一款spring代码生成工具，可自定义模板生成不同的代码，支持MySQL、Oracle、SQL Server、PostgreSQL。
-* 生成mybatis mapper,po,biz,controller全套后台代码
-* 生成easyui代码
-* 生成jqgrid代码
-* 支持基于uri的限制，配置允许动态修改
-* 通过jdbc支持多种数据库:mysql,postgreSql,oracle等
+# java code generation tool
+* A spring code generation tool that can customize templates to generate different codes, supports MySQL, Oracle, SQL Server, PostgreSQL.
+* Generate a full set of background code for mybatis mapper, po, biz, controller
+* Support generating easyui code
+* Support generating jqgrid code
+* Support generating layui code
+* Support generating swagger documentation code
+* Support uri-based restrictions, configuration allows dynamic modification
+* Support multiple databases through jdbc: mysql, postgreSql, oracle, etc.
+* Demonstration example: http://generate.opendfl.org.cn/index.html
 
-## 原理及特性
-* 基于数据库表，读取表的所有属性，备注等，用于生成代码。
-* java代码与页面easyui或jqgrid代码一次生成，根据需要选择对应的页面。
-* 生成的代码可用于springboot或springmvc
+## code structure
+* springboot/springmvc
+* tk.mybatis
+* mysql/postgreSql etc.
+* easyui/jqgrid/layui
+* po, mapper(dao), biz, controller and pages are all generated
+* Support basic functions: query, add, modify, delete.
+* Demonstration example: http://generate-demo.opendfl.org.cn/index.html
 
-## 使用要求
-* 尽量要有注释，否则自动取属性名
-* 配置generatorConfig.xml
-* 运行CodeGeneratorBiz.java
+
+## Principle and characteristics
+* Based on the database table, read all the properties, remarks, etc. of the table for code generation.
+* The java code and the page easyui or jqgrid code are generated at one time, and the corresponding page is selected as needed.
+* Generated code can be used in springboot or springmvc
+
+## Requirements
+* Try to have a comment, otherwise the property name will be automatically taken
+* Configure generatorConfig.xml
+* Run CodeGeneratorBiz.java

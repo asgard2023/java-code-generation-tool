@@ -7,15 +7,16 @@
 * 支持生成swagger文档代码
 * 支持基于uri的限制，配置允许动态修改
 * 通过jdbc支持多种数据库:mysql,postgreSql,oracle等
+* 演示示例：http://generate.opendfl.org.cn/index.html
 
 ## 代码架构
 * springboot/springmvc
 * tk.mybatis
 * mysql/postgreSql等
-* easyui/jqgrid
+* easyui/jqgrid/layui
 * po,mapper(dao),biz,controller及页面全部生成
 * 支持基本功能：查询、增加、修改、删除。
-* 演示示例：http://generate.opendfl.org.cn/index.html
+* 演示示例：http://generate-demo.opendfl.org.cn/index.html
 
 
 ## 原理及特性

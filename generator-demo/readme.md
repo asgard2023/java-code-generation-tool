@@ -15,3 +15,6 @@ http://localhost:8080/doc.html
 * 把生成的代码放到com.ccs.opendfl.mysql.dflsystem各包中去
 * 想要easyui就copy生成代码中的easyui部份
 * 想要jqgrid就copy生成代码中的jqgrid部份
+
+## 演示示例
+http://generate-demo.opendfl.org.cn/index.html
