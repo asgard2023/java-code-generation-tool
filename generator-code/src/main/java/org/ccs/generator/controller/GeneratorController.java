@@ -50,6 +50,8 @@ public class GeneratorController {
         Long existTime = requestLockMap.get(ip);
         String type = request.getParameter("type");
         String swagger = request.getParameter("swagger");
+        String[] uiTypeArrays = request.getParameterValues("uiTypes");
+        config.setUiTypes(uiTypeArrays);
         config.setSwagger(false);
         if (StrUtil.equals("on", swagger)) {
             config.setSwagger(true);
@@ -92,6 +94,7 @@ public class GeneratorController {
             BeanUtil.copyProperties(config, tmp,
                     CopyOptions.create().setIgnoreNullValue(true).setIgnoreError(true));
             tmp.setSwagger(config.isSwagger());
+            tmp.setUiTypes(config.getUiTypes());
             config = tmp;
         }
         log.info("---ip={} type={} tableName={} author={} swagger={}", ip, type, config.getTableName(), config.getAuthor(), config.isSwagger());

@@ -10,7 +10,7 @@
     <title>java后台代码生成</title>
 </head>
 <body>
-<form class="layui-form" lay-filter="fm" action="generator/generate">
+<form class="layui-form" lay-filter="fm" action="generator/generate" method="post">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
         <legend>基本配置</legend>
         <div class="layui-form-item">
@@ -39,6 +39,14 @@
             <div class="layui-input-block">
                 <input type="text" name="pkg" lay-verify="pkg" autocomplete="off"
                        placeholder="全包名: org.ccs.opendfl.mysql.dflsystem" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">前端UI类型</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="uiTypes" value="easyui" lay-skin="primary" title="easyui" checked="">
+                <input type="checkbox" name="uiTypes" value="jqgrid" lay-skin="primary" title="jqgrid">
+                <input type="checkbox" name="uiTypes" value="layui" lay-skin="primary" title="layui">
             </div>
         </div>
     </fieldset>

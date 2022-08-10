@@ -33,6 +33,13 @@
         <property name="hideGridColumns" value="id,ifDel,pwd"/>
         <!-- 编辑时绑定下拉数据 -->
         <property name="dictColumns" value="status:dict_status"/>
+        <property name="uiTypes">
+            <array>
+                <value>jqgrid</value>
+                <value>easyui</value>
+                <value>layui</value>
+            </array>
+        </property>
         <!-- 编辑时绑定下拉数据，包含all选项 -->
         <!--        <property name="dictAllColumns" value="status:dict_tf_status"/>-->
         <!-- 外键关联，查询关联的名称 -->

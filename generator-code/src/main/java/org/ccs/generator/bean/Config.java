@@ -69,4 +69,6 @@ public class Config {
     public void setCompany(String company) {
         this.company = company;
     }
+
+    private String[] uiTypes;
 }

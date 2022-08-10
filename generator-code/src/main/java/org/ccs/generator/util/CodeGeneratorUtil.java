@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ccs.generator.bean.Config;
 import org.ccs.generator.bean.Table;
 import org.ccs.generator.config.ConfigLoader;
+import org.ccs.generator.constants.UIType;
 import org.ccs.generator.exceptions.DataNotExistException;
 
 import java.io.BufferedOutputStream;
@@ -65,7 +66,7 @@ public class CodeGeneratorUtil {
             log.warn("----generateCode--dictColumns={}", config.getDictColumns(), e);
         }
         log.info("----load table info ok");
-        String path = gerenateCode(t, ConfigLoader.getClassPath() + "/generated-sources");
+        String path = gerenateCode(config, t, ConfigLoader.getClassPath() + "/generated-sources");
         log.info("Generated success:" + ConfigLoader.getClassPath() + "\\generated-sources");
         return path;
     }
@@ -76,7 +77,7 @@ public class CodeGeneratorUtil {
      * @param table
      * @param path
      */
-    public static String gerenateCode(Table table, String path) {
+    public static String gerenateCode(Config config, Table table, String path) {
         if (path.endsWith("/"))
             path = path.substring(0, path.length() - 1);
         String curPath = path + "/" + table.getProject() + "/" + table.getEntityName() + "/";
@@ -88,15 +89,25 @@ public class CodeGeneratorUtil {
         genereateCode("mapper_xml.ftl", table, curPath + table.getEntityName() + "-mapper.xml");
         genereateCode("po.ftl", table, curPath + "/" + table.getEntityName() + "Po.java");
 
-        //easyui
-        genereateCode("easyui/easyui_html.ftl", table, curPath + "/easyui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
-        genereateCode("easyui/easyui_js.ftl", table, curPath + "/easyui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".js");
-        //jqgrid
-        genereateCode("jqgrid/jqgrid_html.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
-        genereateCode("jqgrid/jqgrid_js.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".js");
-        //layui
-        genereateCode("layui/layui_html.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
-        genereateCode("layui/layui_edit.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + "Edit.html");
+        String[] uiTypes=config.getUiTypes();
+        for(String type : uiTypes) {
+            UIType uiType=UIType.parse(type);
+            //easyui
+            if(UIType.EASYUI==uiType) {
+                genereateCode("easyui/easyui_html.ftl", table, curPath + "/easyui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
+                genereateCode("easyui/easyui_js.ftl", table, curPath + "/easyui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".js");
+            }
+            //jqgrid
+            else if(UIType.JQGRID==uiType) {
+                genereateCode("jqgrid/jqgrid_html.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
+                genereateCode("jqgrid/jqgrid_js.ftl", table, curPath + "/jqgrid/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".js");
+            }
+            //layui
+            else if(UIType.LAYUI==uiType) {
+                genereateCode("layui/layui_html.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + ".html");
+                genereateCode("layui/layui_edit.ftl", table, curPath + "/layui/" + DbFieldTypeUtil.toLowerCaseFirstChar(table.getEntityName()) + "Edit.html");
+            }
+        }
 
         return curPath;
 
