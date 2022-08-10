@@ -12,21 +12,21 @@
     <form class="layui-form" action="" lay-filter="fm">
         <#list columns as column>
             <#if !column.showInGrid>
-                <input type="hidden" name="${column.fieldName}">
+        <input type="hidden" name="${column.fieldName}">
             <#else>
-                <div class="fitem">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">${column.comment}:</label>
-                        <div class="layui-input-block">
+        <div class="fitem">
+            <div class="layui-form-item">
+                <label class="layui-form-label">${column.comment}:</label>
+                <div class="layui-input-block">
                     <#if column.hasDict>
-                        <select name="${column.fieldName}" lay-filter="${column.fieldName}">
-                        </select>
+                    <select name="${column.fieldName}" lay-filter="${column.fieldName}" id="${column.fieldName}">
+                    </select>
                     <#else>
-                        <input name="${column.fieldName}" class="layui-input" <#if !column.nullable> lay-verify="required"</#if>>
+                    <input name="${column.fieldName}" class="layui-input"<#if !column.nullable> lay-verify="required"</#if>>
                     </#if>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
             </#if>
         </#list>
         <div class="layui-form-item">
@@ -49,13 +49,19 @@
     layui.use(['form'], function () {
         var form = layui.form;
         var $ = layui.$;
-        var id=getQueryString('id');
-        if(id){
+
+        <#list columns as column>
+        <#if column.hasDict>
+        selectOptions(layui, dict_${column.fieldName}, '${column.fieldName}');
+        form.render('select');
+        </#if>
+        </#list>
+        var id = getQueryString('id');
+        if (id) {
             $.post("/${simpleModule}/${entityName?uncap_first}/view", {id: id}, function (data) {
-                if(data.success){
+                if (data.success) {
                     form.val('fm', data.data);
-                }
-                else{
+                } else {
                     layer.msg(data.errorMsg);
                     layer.close(index);
                 }

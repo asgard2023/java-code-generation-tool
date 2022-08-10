@@ -45,20 +45,21 @@
                            lay-filter="dataList">
                         <thead>
                         <tr>
-                                <th lay-data="{field:'id', sort: true, align:'center', hide:true}">id</th>
-                                <th lay-data="{field:'name', sort: true, align:'center'}">name</th>
-                                <th lay-data="{field:'uri', sort: true, align:'center'}">接口uri</th>
-                                <th lay-data="{field:'uriId', sort: true, align:'center'}">uri_id</th>
-                                <th lay-data="{field:'method', sort: true, align:'center'}">请求类型(GET/POST/PUT)</th>
-                                <th lay-data="{field:'resType', sort: true, align:'center'}">资源类型，0接口,1功能</th>
-                                <th lay-data="{field:'status', sort: true, align:'center', templet: function(d,row){
+                            <th lay-data="{field:'id', sort: true, align:'center', hide:true}">id</th>
+                            <th lay-data="{field:'name', sort: true, align:'center'}">name</th>
+                            <th lay-data="{field:'uri', sort: true, align:'center'}">接口uri</th>
+                            <th lay-data="{field:'uriId', sort: true, align:'center'}">uri_id</th>
+                            <th lay-data="{field:'method', sort: true, align:'center'}">请求类型(GET/POST/PUT)</th>
+                            <th lay-data="{field:'resType', sort: true, align:'center'}">资源类型，0接口,1功能</th>
+                            <th lay-data="{field:'status', sort: true, align:'center', templet: function(d,row){
                                 return formatterCombobox(dict_status, d.status);
-                                }}">status</th>
-                                <th lay-data="{field:'ifDel', sort: true, align:'center', hide:true}">是否删除</th>
-                                <th lay-data="{field:'createTime', sort: true, align:'center'}">创建时间</th>
-                                <th lay-data="{field:'modifyTime', sort: true, align:'center'}">修改时间</th>
-                                <th lay-data="{field:'createUser', sort: true, align:'center'}">创建人</th>
-                                <th lay-data="{field:'modifyUser', sort: true, align:'center'}">修改人</th>
+                                }}">status
+                            </th>
+                            <th lay-data="{field:'ifDel', sort: true, align:'center', hide:true}">是否删除</th>
+                            <th lay-data="{field:'createTime', sort: true, align:'center'}">创建时间</th>
+                            <th lay-data="{field:'modifyTime', sort: true, align:'center'}">修改时间</th>
+                            <th lay-data="{field:'createUser', sort: true, align:'center'}">创建人</th>
+                            <th lay-data="{field:'modifyUser', sort: true, align:'center'}">修改人</th>
                             <th lay-data="{field:'right',toolbar: '#rightBar',width:150,align:'center'}">操作</th>
                         </tr>
                         </thead>
@@ -87,14 +88,14 @@
     layui.use(['form', 'table', 'laydate'], function () {
         var $ = layui.$;
         var table = layui.table;
-        var form=layui.form;
+        var form = layui.form;
         tableInitResponseType(table);
 
         initStartEndTime(7);
 
         form.on('submit(btnSearch)', function (data) {
             var jsonParam = form.val('searchForm');
-            table.reload('dataList',{
+            table.reload('dataList', {
                 where: jsonParam
             });
         });
@@ -139,7 +140,8 @@
                         content: 'dflResourceEdit.html'
                     });
                     break;
-            };
+            }
+            ;
         });
     })
 </script>

@@ -46,7 +46,7 @@
                         <thead>
                         <tr>
                             <#list columns as column>
-                                <th lay-data="{field:'${column.fieldName}', sort: true, align:'center'<#if !column.showInGrid>, hide:true</#if><#if column.hasDict>, templet: function(d,row){
+                            <th lay-data="{field:'${column.fieldName}', sort: true, align:'center'<#if !column.showInGrid>, hide:true</#if><#if column.hasDict>, templet: function(d,row){
                                 return formatterCombobox(${column.dictKey}, d.${column.fieldName});
                                 }</#if>}">${column.comment}</th>
                             </#list>
@@ -85,7 +85,7 @@
 
         form.on('submit(btnSearch)', function (data) {
             var jsonParam = form.val('searchForm');
-            table.reload('dataList',{
+            table.reload('dataList', {
                 where: jsonParam
             });
         });
