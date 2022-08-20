@@ -14,7 +14,6 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Length;
 
 <#list columns as column>
@@ -40,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 */
 @Data
 @Table(name = "${tableName}")
-@XmlRootElement(name="${entityName?uncap_first}")
 @JsonInclude(Include.ALWAYS)
 public class ${entityName}Po implements Serializable {
 
