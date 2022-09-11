@@ -40,7 +40,7 @@ public class DflRolePo implements Serializable {
      * 编码
      */
     @Column(name = "code")
-    @NotBlank(message ="编码不能为空")
+    @NotBlank(message = "编码不能为空")
     @Length(message = "编码超出最大长度限制", max = 60)
     private String code;
 
@@ -48,7 +48,7 @@ public class DflRolePo implements Serializable {
      * 名称
      */
     @Column(name = "name")
-    @NotBlank(message ="名称不能为空")
+    @NotBlank(message = "名称不能为空")
     @Length(message = "名称超出最大长度限制", min = 2, max = 60)
     private String name;
 

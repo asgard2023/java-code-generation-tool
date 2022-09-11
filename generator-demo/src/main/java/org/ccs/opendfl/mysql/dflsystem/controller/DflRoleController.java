@@ -14,10 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -104,7 +101,7 @@ public class DflRoleController extends BaseController {
         entity.setModifyUser(getCurrentUserId());
         entity.setCreateUser(getCurrentUserId());
         dflRoleBiz.saveDflRole(entity);
-        return ResultData.success();
+        return ResultData.success(entity.getId());
     }
 
     /**
@@ -120,26 +117,25 @@ public class DflRoleController extends BaseController {
     @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
     public ResultData update(DflRolePo entity, HttpServletRequest request) {
         entity.setModifyUser(getCurrentUserId());
-        int v = dflRoleBiz.updateDflRole(entity);
-        return ResultData.success(v);
+        dflRoleBiz.updateDflRole(entity);
+        return ResultData.success(entity.getId());
     }
 
     /**
      * 角色表 删除
      *
      * @param request
-     * @param dflRole
+     * @param id      数据id
      * @return ResultData
      * @author chenjh
      * @date 2022-5-3 20:25:42
      */
     @ApiOperation(value = "删除角色", notes = "根据传入id进行删除状态修改(即软删除)")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.DELETE})
-    public ResultData delete(DflRolePo dflRole, HttpServletRequest request) {
-        String id = request.getParameter("id");
+    public ResultData delete(@RequestParam(name = "id", required = false) Integer id, HttpServletRequest request) {
         ValidateUtils.notNull(id, "id不能为空");
         String remark = request.getParameter("remark");
-        int v = dflRoleBiz.deleteDflRole(Integer.parseInt(id), this.getCurrentUserId(), remark);
+        int v = dflRoleBiz.deleteDflRole(id, this.getCurrentUserId(), remark);
         return ResultData.success(v);
     }
 }

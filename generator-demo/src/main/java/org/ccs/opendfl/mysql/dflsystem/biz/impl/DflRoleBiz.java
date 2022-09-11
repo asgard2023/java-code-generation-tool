@@ -132,7 +132,7 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz {
         if (entity.getIfDel() == null) {
             entity.setIfDel(0);
         }
-        int v = this.mapper.insert(entity);
+        int v = this.mapper.insertUseGeneratedKeys(entity);
         return v;
     }
 
@@ -146,7 +146,7 @@ public class DflRoleBiz extends BaseService<DflRolePo> implements IDflRoleBiz {
     @Override
     public Integer deleteDflRole(Integer id, Integer operUser, String remark) {
         DflRolePo po = new DflRolePo();
-		po.setId(id);
+        po.setId(id);
         po.setIfDel(1); // 0未删除,1已删除
         po.setModifyUser(operUser);
         po.setRemark(remark);

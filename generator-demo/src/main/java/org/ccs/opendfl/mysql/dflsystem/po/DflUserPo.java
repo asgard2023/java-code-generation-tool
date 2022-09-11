@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
@@ -19,7 +18,7 @@ import java.util.Date;
  * @Version V1.0
  * @Title: DflUserPo
  * @Description: dfl_user 实体
- * @Author: Created by Generator
+ * @author chenjh
  * @Date: 2022-8-3 22:44:41
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.

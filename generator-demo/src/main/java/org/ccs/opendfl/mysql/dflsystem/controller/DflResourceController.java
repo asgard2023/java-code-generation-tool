@@ -15,16 +15,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * @author chenjh
  * @Version V1.0
  * @Title: DflResourcecontroller
  * @Package: org.ccs.opendfl.mysql.dflsystem.controller 包名
  * @Description: 菜单资源管理 Controller
- * @Author: Created by Generator
  * @Date: 2022-8-6 23:03:15
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
@@ -99,7 +100,7 @@ public class DflResourceController extends BaseController {
         entity.setModifyUser(getCurrentUserId());
         entity.setCreateUser(getCurrentUserId());
         dflResourceBiz.saveDflResource(entity);
-        return ResultData.success();
+        return ResultData.success(entity.getId());
     }
 
     /**
@@ -116,24 +117,24 @@ public class DflResourceController extends BaseController {
     public ResultData update(DflResourcePo entity, HttpServletRequest request) {
         entity.setModifyUser(getCurrentUserId());
         int v = dflResourceBiz.updateDflResource(entity);
-        return ResultData.success(v);
+        return ResultData.success(entity.getId());
     }
 
     /**
      * 菜单资源管理 删除
      *
      * @param request 请求req
-     * @param entity  菜单资源管理对象
+     * @param id      数据id
      * @return ResultData 返回数据
      * @author Generator
      * @date 2022-8-6 23:03:15
      */
     @ApiOperation(value = "删除菜单资源管理 ", notes = "根据传入id进行删除状态修改(即软删除)")
     @RequestMapping(value = "delete", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResultData delete(DflResourcePo entity, HttpServletRequest request) {
-        ValidateUtils.notNull(entity.getId(), "id不能为空");
+    public ResultData delete(@RequestParam(name = "id", required = false) Integer id, HttpServletRequest request) {
+        ValidateUtils.notNull(id, "id不能为空");
         String remark = request.getParameter("remark");
-        int v = dflResourceBiz.deleteDflResource(entity.getId(), this.getCurrentUserId(), remark);
+        int v = dflResourceBiz.deleteDflResource(id, this.getCurrentUserId(), remark);
         return ResultData.success(v);
     }
 

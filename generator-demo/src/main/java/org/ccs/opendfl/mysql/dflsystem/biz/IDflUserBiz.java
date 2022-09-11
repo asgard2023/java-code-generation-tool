@@ -7,7 +7,7 @@ import org.ccs.opendfl.mysql.dflsystem.po.DflUserPo;
  * @Version V1.0
  * @Title: IDflUserBiz
  * @Description: dfl_user 业务接口
- * @Author: Created by Generator
+ * @author chenjh
  * @Date: 2022-8-6 6:06:51
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.

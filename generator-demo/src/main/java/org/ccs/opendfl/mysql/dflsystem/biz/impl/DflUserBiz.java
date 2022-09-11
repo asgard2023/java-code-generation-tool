@@ -23,7 +23,7 @@ import java.util.Map;
  * @Version V1.0
  * @Title: DflUserBiz
  * @Description: dfl_user 业务实现
- * @Author: Created by Generator
+ * @author chenjh
  * @Date: 2022-8-6 5:57:28
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
@@ -107,7 +107,7 @@ public class DflUserBiz extends BaseService<DflUserPo> implements IDflUserBiz {
         if (entity.getIfDel() == null) {
             entity.setIfDel(0);
         }
-        return this.mapper.insert(entity);
+        return this.mapper.insertUseGeneratedKeys(entity);
     }
 
     @Override

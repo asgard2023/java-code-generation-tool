@@ -124,7 +124,7 @@ public class ${entityName}Controller extends BaseController {
 	/**
 	 * ${comment} 删除
 	 * @param request 请求req
-	 * @param entity ${comment}对象
+	 * @param id ${comment}ID
 	 * @return ResultData 返回数据
 	 * @author ${author}
 	 * @date ${.now}
@@ -133,10 +133,10 @@ public class ${entityName}Controller extends BaseController {
 	@ApiOperation(value = "删除${comment} ", notes = "根据传入id进行删除状态修改(即软删除)")
 </#if>
 	@RequestMapping(value = "delete", method = {RequestMethod.POST, RequestMethod.GET})
-	public ResultData delete(${entityName}Po entity, HttpServletRequest request){
-		ValidateUtils.notNull(entity.getId(),"id不能为空");
+	public ResultData delete(@RequestParam(name = "id", required = false) Integer id, HttpServletRequest request) {
+		ValidateUtils.notNull(id, "id不能为空");
 		String remark = request.getParameter("remark");
-		int v=${entityName?uncap_first}Biz.delete${entityName}(entity.getId(), this.getCurrentUserId(), remark);
+		int v = ${entityName?uncap_first}Biz.delete${entityName}(id, this.getCurrentUserId(), remark);
 		return ResultData.success(v);
 	}
 }

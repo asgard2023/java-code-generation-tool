@@ -12,8 +12,8 @@
     <script type="text/javascript" src="../../js/easyui/Common.js"></script>
     <script type="text/javascript" src="../../js/easyui/comm.dict.js"></script>
     <script type="text/javascript" src="../../js/easyui/DateUtils.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../easyui/easyui1.7.0/themes/bootstrap/easyui.css">
-    <link rel="stylesheet" type="text/css" href="../../easyui/easyui1.7.0/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/easyui/easyui1.7.0/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/easyui/easyui1.7.0/themes/icon.css">
 
     <style type="text/css">
         #fm {

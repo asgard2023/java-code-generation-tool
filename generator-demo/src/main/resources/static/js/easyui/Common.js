@@ -256,3 +256,14 @@ function initStartEndTime(beforeDay) {
     console.log('----initStartEndTime-beforeDay='+beforeDay)
     $("#query_startTime").datetimebox("setValue", Common.DateFormatter(recentlyDate));
 }
+
+function getDataGridIds(dgId){
+    var rows = $("#"+dgId).datagrid("getRows");
+    var ids='';
+    for(var i=0; i<rows.length; i++)
+    {
+        ids+=rows[i].id+',';
+    }
+    console.log(ids);
+    return ids;
+}

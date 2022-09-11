@@ -24,7 +24,7 @@ import java.util.Map;
  * @Version V1.0
  * @Title: DflResourceBiz
  * @Description: 菜单资源管理 业务实现
- * @Author: Created by Generator
+ * @author chenjh
  * @Date: 2022-8-6 23:03:15
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
@@ -115,7 +115,7 @@ public class DflResourceBiz extends BaseService<DflResourcePo> implements IDflRe
         if (entity.getIfDel() == null) {
             entity.setIfDel(0);
         }
-        return this.mapper.insert(entity);
+        return this.mapper.insertUseGeneratedKeys(entity);
     }
 
     @Override
