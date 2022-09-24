@@ -16,7 +16,6 @@ import java.util.Date;
 
 /**
  * @Version V1.0
- * @Title: DflUserPo
  * @Description: dfl_user 实体
  * @author chenjh
  * @Date: 2022-8-3 22:44:41

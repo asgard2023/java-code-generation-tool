@@ -29,9 +29,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
  *
  *
  * @Version V1.0
- * @Title: ${entityName}Po
- * @Description: ${comment} 实体
- * @Author: Created by ${author}
+ * ${comment} 实体
+ * @author: ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}

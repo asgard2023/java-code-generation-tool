@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author chenjh
  * @Version V1.0
- * @Title: DflResourcecontroller
- * @Package: org.ccs.opendfl.mysql.dflsystem.controller 包名
  * @Description: 菜单资源管理 Controller
  * @Date: 2022-8-6 23:03:15
  * @Company: opendfl

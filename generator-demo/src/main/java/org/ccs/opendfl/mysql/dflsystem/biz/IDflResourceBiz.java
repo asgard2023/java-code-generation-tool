@@ -5,7 +5,6 @@ import org.ccs.opendfl.mysql.dflsystem.po.DflResourcePo;
 
 /**
  * @Version V1.0
- * @Title: IDflResourceBiz
  * @Description: 菜单资源管理 业务接口
  * @author chenjh
  * @Date: 2022-8-6 23:03:15

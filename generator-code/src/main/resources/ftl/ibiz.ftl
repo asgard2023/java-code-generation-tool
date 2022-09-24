@@ -7,9 +7,8 @@ import org.ccs.opendfl.base.IBaseService;
 /**
  *
  * @Version V1.0
- * @Title: I${entityName}Biz
- * @Description: ${comment} 业务接口
- * @Author: Created by ${author}
+ *  ${comment} 业务接口
+ * @author: ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}

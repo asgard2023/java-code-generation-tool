@@ -27,10 +27,8 @@ import ${module}.po.${entityName}Po;
 
 /**
  * @Version V1.0
- * @Title: ${entityName}controller
- * @Package: ${module}.controller 包名
- * @Description: ${comment} Controller
- * @Author: Created by ${author}
+ * ${comment} Controller
+ * @author: ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}

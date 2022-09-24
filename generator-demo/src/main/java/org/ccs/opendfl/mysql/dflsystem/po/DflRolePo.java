@@ -15,7 +15,6 @@ import java.util.Date;
 
 /**
  * @Version V1.0
- * @Title: DflRolePo
  * @Description: 角色表 实体
  * @Author: Created by chenjh
  * @Date: 2022-5-3 20:25:42

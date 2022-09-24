@@ -16,7 +16,6 @@ import java.util.Date;
 
 /**
  * @Version V1.0
- * @Title: DflResourcePo
  * @Description: 菜单资源管理 实体
  * @author chenjh
  * @Date: 2022-8-6 23:03:15

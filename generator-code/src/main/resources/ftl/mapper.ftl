@@ -5,9 +5,8 @@ import tk.mybatis.mapper.common.Mapper;
 
 /**
  * @Version V1.0
- * @Title: ${entityName}Mapper
  * @Description: ${comment} Mapper
- * @Author: Created by ${author}
+ * @author: ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}

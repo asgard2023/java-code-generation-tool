@@ -6,7 +6,6 @@ import tk.mybatis.mapper.common.MapperById;
 /**
  * @author chenjh
  * @Version V1.0
- * @Title: DflUserMapper
  * @Description: Mapper
  * @Date: 2022-8-1 6:17:44
  * @Company: opendfl

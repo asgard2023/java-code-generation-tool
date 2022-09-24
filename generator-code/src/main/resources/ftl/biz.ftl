@@ -27,9 +27,8 @@ import javax.annotation.Resource;
 
 /**
  * @Version V1.0
- * @Title: ${entityName}Biz
- * @Description: ${comment} 业务实现
- * @Author: Created by ${author}
+ * ${comment} 业务实现
+ * @author: ${author}
  * @Date: ${.now}
  * @Company: ${company}
  * @Copyright: ${copyright}
