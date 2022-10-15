@@ -1,4 +1,4 @@
-package org.ccs.opendfl.mysql.vo;
+package org.ccs.opendfl.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

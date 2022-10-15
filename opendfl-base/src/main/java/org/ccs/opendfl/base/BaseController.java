@@ -1,8 +1,8 @@
 package org.ccs.opendfl.base;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.ccs.opendfl.mysql.vo.UserVo;
+import org.ccs.opendfl.vo.UserVo;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -97,13 +97,13 @@ public abstract class BaseController {
         String sort = this.getRequest().getParameter("sort");
         String page = this.getRequest().getParameter("page");
         String rows = this.getRequest().getParameter("rows");
-        if (StringUtils.isNotBlank(sort)) {
+        if (CharSequenceUtil.isNotBlank(sort)) {
             pageInfo.setOrderBy(sort);
         }
-        if (StringUtils.isNotBlank(page)) {
+        if (CharSequenceUtil.isNotBlank(page)) {
             pageInfo.setPageNum(Integer.parseInt(page));
         }
-        if (StringUtils.isNotBlank(rows)) {
+        if (CharSequenceUtil.isNotBlank(rows)) {
             pageInfo.setPageSize(Integer.parseInt(rows));
         }
     }

@@ -10,6 +10,7 @@
 	<packaging>pom</packaging>
     <modules>
         <module>generator-code</module>
+        <module>opendfl-base</module>
         <module>generator-demo</module>
     </modules>
 

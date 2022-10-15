@@ -1,8 +1,8 @@
 package org.ccs.opendfl.base;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.text.CharSequenceUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.MapperException;
 import tk.mybatis.mapper.entity.EntityColumn;
 import tk.mybatis.mapper.mapperhelper.EntityHelper;
@@ -25,7 +25,7 @@ public class BeanUtils {
      * @return
      */
     public static String upperCaseFirst(String value) {
-        if (StringUtils.isEmpty(value)) {
+        if (CharSequenceUtil.isEmpty(value)) {
             return value;
         }
         char[] cs = value.toCharArray();
@@ -126,7 +126,7 @@ public class BeanUtils {
 
     public static Map<Object, Object> getMapProps(Collection<?> list, String keyProp, String valueProp) {
         Map<Object, Object> result = new HashMap<>();
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return Collections.emptyMap();
         }
         for (Object obj : list) {
@@ -144,7 +144,7 @@ public class BeanUtils {
      * @throws Exception
      */
     public static List<Object> getPropsByName(Collection<?> list, String propName) {
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return Collections.emptyList();
         }
         List<Object> propDataList = new ArrayList<>(list.size());
@@ -166,7 +166,7 @@ public class BeanUtils {
      * @throws Exception
      */
     public static List<String> getStrPropsByName(Collection<?> list, String propName) {
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return Collections.emptyList();
         }
         List<String> propDataList = new ArrayList<>(list.size());
@@ -186,7 +186,7 @@ public class BeanUtils {
     }
 
     public static List<String> toStringList(List<Object> list) {
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return Collections.emptyList();
         }
         List<String> list2 = new ArrayList<>(list.size());
@@ -217,7 +217,7 @@ public class BeanUtils {
      */
     public static Object getObjectByProperty(Object bean, String property)
             throws IntrospectionException, IllegalAccessException, InvocationTargetException {
-        if (StringUtils.isEmpty(property)) {
+        if (CharSequenceUtil.isEmpty(property)) {
             return null;
         }
         property = property.trim();

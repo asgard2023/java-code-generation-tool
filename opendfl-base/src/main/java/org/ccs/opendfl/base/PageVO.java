@@ -1,10 +1,10 @@
 package org.ccs.opendfl.base;
 
+import cn.hutool.core.text.CharSequenceUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -60,10 +60,10 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable {
         }
         String page = request.getParameter("page");
         String rows = request.getParameter("rows");
-        if (StringUtils.isEmpty(page)) {
+        if (CharSequenceUtil.isEmpty(page)) {
             page = "1";
         }
-        if (StringUtils.isEmpty(rows)) {
+        if (CharSequenceUtil.isEmpty(rows)) {
             rows = "20";
         }
         this.currentPage = Integer.parseInt(page);
@@ -99,12 +99,12 @@ public class PageVO<T> implements IPageVO<T>, java.io.Serializable {
      */
     public String getOrderClause() {
         String sort = getSort();
-        if (StringUtils.isEmpty(sort)) {
+        if (CharSequenceUtil.isEmpty(sort)) {
             return null;
         }
         sort = camelToUnderline(sort);
         String order = getOrder();
-        if (StringUtils.isEmpty(order)) {
+        if (CharSequenceUtil.isEmpty(order)) {
             return null;
         }
         return sort + " " + order;

@@ -15,18 +15,18 @@
     <!-- 重复生成会删除旧的代码再生成新的 -->
     <bean id="config" class="org.ccs.generator.bean.Config">
         <!-- 表名  -->
-        <property name="tableName" value="dfl_resource"/>
+        <property name="tableName" value="ta_data_method"/>
         <!-- 实体名称  -->
-        <property name="entityName" value="DflResource"/>
+        <property name="entityName" value="TaDataMethod"/>
         <!-- 模块名称，代码安放的目录 -->
-        <property name="modelName" value="dflsystem"/>
+        <property name="modelName" value="task"/>
         <!-- 全包名 -->
-        <property name="pkg" value="org.ccs.opendfl.mysql.dflsystem"/>
+        <property name="pkg" value="cn.org.opendfl.task"/>
         <!-- 代码作者 -->
-        <property name="author" value="Generator"/>
+        <property name="author" value="chenjh"/>
         <property name="swagger" value="true"/>
         <!-- 精确匹配查询，多个以","隔开 -->
-        <property name="equalsSearchColumns" value="telephone,username,email"/>
+        <property name="equalsSearchColumns" value="code,name,category,ifRemind,ifLogDetail"/>
         <!-- 模糊查询条件，多个以","隔开 -->
         <!-- 		<property name="likeSearchColumns" value="title,description"/> -->
         <!-- 定义哪些属性在jsp grid中显示或不显示，多个以","隔开，属性前添加"!"相反 -->

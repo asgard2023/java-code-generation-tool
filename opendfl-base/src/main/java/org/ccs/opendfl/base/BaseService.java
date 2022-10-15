@@ -25,15 +25,15 @@
 package org.ccs.opendfl.base;
 
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.UUID;
+import cn.hutool.core.text.CharSequenceUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.EntityColumn;
 import tk.mybatis.mapper.entity.Example;
@@ -93,7 +93,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
      */
     public void addFilters(Example.Criteria criteria, Map<String, Object> otherParams) {
         String filters = (String) otherParams.get("filters");
-        if (!StringUtils.isEmpty(filters)) {
+        if (!CharSequenceUtil.isEmpty(filters)) {
             JSONObject jsonFilter = (JSONObject) JSON.toJSON(filters);
             String groupOp = jsonFilter.getString("groupOp");
             JSONArray rules = jsonFilter.getJSONArray("rules");
@@ -238,7 +238,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
      */
     @Override
     public List<T> findByPropotys(String propName, List<Object> propotys, Class<?> entityClass, String orderByClause) throws Exception {
-        if (CollectionUtils.isEmpty(propotys)) {
+        if (CollUtil.isEmpty(propotys)) {
             return Collections.emptyList();
         }
         Example example = new Example(entityClass);
@@ -278,7 +278,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
     @Override
     public T findOne(String propoty, Object value, Class<T> entity) {
         List<T> list = findByPropoty(propoty, value, entity);
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return null;
         }
         if (list.size() > 1) {
@@ -355,11 +355,11 @@ public abstract class BaseService<T> implements IBaseService<T> {
      */
     @Override
     public void loadProperty(List<?> list, String byProp, String propId, String propName, Class<T> clazz) throws Exception {
-        if (CollectionUtils.isEmpty(list)) {
+        if (CollUtil.isEmpty(list)) {
             return;
         }
         List<Object> ids = BeanUtils.getPropsByName(list, byProp);
-        if (CollectionUtils.isEmpty(ids)) {
+        if (CollUtil.isEmpty(ids)) {
             return;
         }
         List<T> tList = this.findByIds(ids, clazz);
@@ -374,7 +374,7 @@ public abstract class BaseService<T> implements IBaseService<T> {
 
     @Override
     public void loadProperty(List<?> list, String byKey, String setName, String getKey, String getName, Class<T> clazz) throws Exception {
-        if (CollectionUtils.isEmpty(list)) return;
+        if (CollUtil.isEmpty(list)) return;
         List<Object> props = BeanUtils.getPropsByName(list, byKey);
         List<T> findList = findByPropotys(getKey, props, clazz);
         Map<Object, Object> result = BeanUtils.getMapProps(findList, getKey, getName);
@@ -390,11 +390,11 @@ public abstract class BaseService<T> implements IBaseService<T> {
 
     @Override
     public Map<String, T> findMapByIds(List<Object> ids, Class<T> entity) throws Exception {
-        if (CollectionUtils.isEmpty(ids)) {
+        if (CollUtil.isEmpty(ids)) {
             return Collections.emptyMap();
         }
         List<T> pos = this.findByIds(ids, entity);
-        if (CollectionUtils.isEmpty(pos)) {
+        if (CollUtil.isEmpty(pos)) {
             return Collections.emptyMap();
         }
         Map<String, T> map = new HashMap<String, T>();
