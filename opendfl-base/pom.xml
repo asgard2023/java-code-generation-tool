@@ -12,9 +12,26 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>2.7.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <!--scm信息-->
+    <scm>
+        <url>http://task-tool-demo.opendfl.org.cn/index.html</url>
+        <connection>scm:git@github.com:asgard2023/java-code-generation-tool.git</connection>
+        <developerConnection>scm:git@github.com:asgard2023/java-code-generation-tool.git</developerConnection>
+    </scm>
+
+    <!--发布者信息-->
+    <developers>
+        <developer>
+            <name>chenjh</name>
+            <email>asgard2023@outlook.com</email>
+            <organization>http://task-tool-demo.opendfl.org.cn/index.html</organization>
+            <organizationUrl>http://task-tool-demo.opendfl.org.cn/index.html</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
