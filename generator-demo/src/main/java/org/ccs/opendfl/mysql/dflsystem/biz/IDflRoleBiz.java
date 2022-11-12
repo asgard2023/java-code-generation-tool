@@ -1,6 +1,6 @@
 package org.ccs.opendfl.mysql.dflsystem.biz;
 
-import org.ccs.opendfl.base.IBaseService;
+import cn.org.opendfl.base.IBaseService;
 import org.ccs.opendfl.mysql.dflsystem.po.DflRolePo;
 
 import java.util.List;

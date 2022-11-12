@@ -1,10 +1,10 @@
 package org.ccs.opendfl.mysql.dflsystem.biz.impl;
 
+import cn.org.opendfl.base.BaseService;
+import cn.org.opendfl.base.BeanUtils;
+import cn.org.opendfl.base.MyPageInfo;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
-import org.ccs.opendfl.base.BaseService;
-import org.ccs.opendfl.base.BeanUtils;
-import org.ccs.opendfl.base.MyPageInfo;
 import org.ccs.opendfl.mysql.dflsystem.biz.IDflResourceBiz;
 import org.ccs.opendfl.mysql.dflsystem.mapper.DflResourceMapper;
 import org.ccs.opendfl.mysql.dflsystem.po.DflResourcePo;
@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * @author chenjh
  * @Version V1.0
  * @Description: 菜单资源管理 业务实现
- * @author chenjh
  * @Date: 2022-8-6 23:03:15
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.

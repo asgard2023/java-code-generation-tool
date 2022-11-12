@@ -1,12 +1,12 @@
 package org.ccs.opendfl.mysql.dflsystem.biz;
 
-import org.ccs.opendfl.base.IBaseService;
+import cn.org.opendfl.base.IBaseService;
 import org.ccs.opendfl.mysql.dflsystem.po.DflResourcePo;
 
 /**
+ * @author chenjh
  * @Version V1.0
  * @Description: 菜单资源管理 业务接口
- * @author chenjh
  * @Date: 2022-8-6 23:03:15
  * @Company: opendfl
  * @Copyright: 2022 opendfl Inc. All rights reserved.
